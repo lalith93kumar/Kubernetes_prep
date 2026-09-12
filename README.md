@@ -115,6 +115,8 @@ uptime / top / htop
                   └── iostat → iotop/pidstat
 ```
 
+Difference between count and for_each. in terraform.
+count create resources based on number. But for each based on object.
 
 
 
