@@ -34,12 +34,16 @@ DaemonSet
 ConfigMap vs Secret
 - A ConfigMap stores non-sensitive configuration data as key-value pairs.
 - A Secret stores sensitive information. encrypted in based 64
+  
 ClusterIP
 - It makes an application accessible only inside the Kubernetes cluster. http://backend:80
+  
 Roll back
 kubectl rollout undo deployment/my-app --to-revision=2
+
 ingress vs loadbalancer
 LoadBalancer exposes a Service externally. Ingress provides intelligent HTTP/HTTPS routing to multiple Services through a single entry point.
+
 readness vs liveness
 "For example, if my application is temporarily unable to handle requests, the readiness probe fails and Kubernetes stops sending traffic to that Pod, but doesn't restart it. If the application becomes stuck or deadlocked and the liveness probe fails repeatedly, Kubernetes restarts the container."
 
@@ -78,12 +82,14 @@ users cannot access the application from their browser.
 - check the service selector & pod label matches
 - check the loabalancer or ingress
 - check ingress to service name configure with svc name & port.
+  
 node is ready but pod is pending
 - check allocation & requested resource.
 - check for pvs & storage for the pod.
 - check karpeneter logs.
 - check taints & tolerance of node & pod
-- check for topologySpreadConstraints on pod. 
+- check for topologySpreadConstraints on pod.
+  
 How would you debug high CPU, memory, or disk utilization on a Linux server?
 ```
 Server is slow
