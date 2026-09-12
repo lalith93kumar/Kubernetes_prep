@@ -34,4 +34,6 @@ DaemonSet
 ConfigMap vs Secret
 - A ConfigMap stores non-sensitive configuration data as key-value pairs.
 - A Secret stores sensitive information. encrypted in based 64
+ClusterIP
+- It makes an application accessible only inside the Kubernetes cluster. http://backend:80
 
