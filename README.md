@@ -36,4 +36,82 @@ ConfigMap vs Secret
 - A Secret stores sensitive information. encrypted in based 64
 ClusterIP
 - It makes an application accessible only inside the Kubernetes cluster. http://backend:80
+Roll back
+kubectl rollout undo deployment/my-app --to-revision=2
+ingress vs loadbalancer
+LoadBalancer exposes a Service externally. Ingress provides intelligent HTTP/HTTPS routing to multiple Services through a single entry point.
+readness vs liveness
+"For example, if my application is temporarily unable to handle requests, the readiness probe fails and Kubernetes stops sending traffic to that Pod, but doesn't restart it. If the application becomes stuck or deadlocked and the liveness probe fails repeatedly, Kubernetes restarts the container."
+
+let ready = false;
+```
+// Application initialization
+async function initialize() {
+  // Connect to database
+  await connectToDatabase();
+
+  // Load required configuration
+  await loadConfiguration();
+
+  ready = true;
+}
+
+app.get("/ready", (req, res) => {
+  if (ready) {
+    return res.status(200).send("Ready");
+  }
+
+  return res.status(503).send("Not Ready");
+});
+```
+CrashLoopBackOff pod.
+```
+kubectl get pods
+kubectl describe pod my-app 
+kubectl logs my-app -c <container-name>
+```
+users cannot access the application from their browser.
+- check pod status
+- check pod by hitting localhost enpoint
+- check service svc -> kubectl describe svc
+- check endpoint -> kubectl get endpoints <service-name>
+- check the service selector & pod label matches
+- check the loabalancer or ingress
+- check ingress to service name configure with svc name & port.
+node is ready but pod is pending
+- check allocation & requested resource.
+- check for pvs & storage for the pod.
+- check karpeneter logs.
+- check taints & tolerance of node & pod
+- check for topologySpreadConstraints on pod. 
+How would you debug high CPU, memory, or disk utilization on a Linux server?
+```
+Server is slow
+      │
+      ▼
+uptime / top / htop
+      │
+      ├── CPU high
+      │     └── ps aux --sort=-%cpu
+      │           └── investigate process/app
+      │
+      ├── Memory high
+      │     └── free -h
+      │           └── ps aux --sort=-%mem
+      │                 └── check swap/OOM
+      │
+      └── Disk problem
+            │
+            ├── Space full?
+            │     └── df -h → du → find
+            │
+            └── I/O high?
+                  └── iostat → iotop/pidstat
+```
+
+
+
+
+
+
 
