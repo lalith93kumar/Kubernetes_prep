@@ -118,8 +118,24 @@ uptime / top / htop
 Difference between count and for_each. in terraform.
 count create resources based on number. But for each based on object.
 
+exit code 0 - command killed because of a issue or work entrypoint
+exit code 137 - out of memory 
+exit code 1 - just finished 
+docker run -d --name my-container my-image && docker logs my-container
 
+Pods are healthy, but the Service gives connection refused. Where do you look?
+- check if endpoint is empty or not. when you create a service it will create a endpoint.
+- service selector is not maching.
+- check the port in service & service.
 
+ci pipeline take 45 mins.
+- parallelis the job which are independent jobs.
+- cache dependency in the docker image.
+
+infra drift:
+- manual changes to infra deployed using terraform.
+- 
+  
 
 
 
